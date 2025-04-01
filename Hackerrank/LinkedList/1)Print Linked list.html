@@ -1,0 +1,29 @@
+<html>
+<script>
+    class ListNode {
+        constructor(data, next = null) {
+            this.data = data;
+            this.next = next
+        }
+    }
+    function printLinkedList(head) {
+        while (head !== null) {
+            console.log(head.data)
+            head = head.next
+        }
+
+    }
+
+
+    const list1 = new ListNode(1);
+    list1.next = new ListNode(2);
+    list1.next.next = new ListNode(4);
+
+    const list2 = new ListNode(1);
+    list2.next = new ListNode(3);
+    list2.next.next = new ListNode(4);
+
+    console.log(printLinkedList(list1))
+</script>
+
+</html>
