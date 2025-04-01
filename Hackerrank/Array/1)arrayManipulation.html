@@ -1,0 +1,57 @@
+<html>
+<script>
+// Starting with a 1-indexed array of zeros and a list of operations, for each operation add a value to each array element between two given indices, inclusive. Once all operations 
+// have been performed, return the maximum value in the array.
+
+    // time complexity (Queries*n)
+    function arrayManipulation(n, queries) {
+        let arr = new Array(n).fill(0);
+        for (let [a, b, k] of queries) {
+            while (a <= b) {
+                arr[a - 1] += k;
+                a++;
+            }
+        }
+        let MaxNo = -Infinity;
+        for (let i = 0; i < arr.length; i++) {
+            MaxNo = Math.max(MaxNo, arr[i])
+        }
+        return MaxNo;
+    }
+
+    // using difference array technique
+    function arrayManipulation1(n, queries) {
+        let arr = new Array(n).fill(0);
+        for (let [a, b, k] of queries) {
+            arr[a - 1] += k;  // Start adding k from index (a-1)
+            arr[b] -= k;  // Remove k after index b for relative index 
+
+        }
+        console.log(arr)
+        let maxNo = 0, currentSum = 0;
+        for (let i = 0; i < n; i++) {
+            currentSum += arr[i];
+            maxNo = Math.max(maxNo, currentSum);
+        }
+
+        return maxNo;
+    }
+
+    // Example Usage:
+    const n = 10;
+    const queries = [
+        [2, 6, 8],
+        [3, 5, 7],
+        [1, 8, 1],
+        [5, 9, 15]
+    ];
+    const queries1 = [
+        [1, 2, 100],
+        [2, 5, 100],
+        [3, 4, 100]
+    ]
+
+    console.log(arrayManipulation1(10, queries)); 
+</script>
+
+</html>
