@@ -1,0 +1,33 @@
+<html>
+<script>
+    function isSubsetSumDP(arr, target) {
+        const n = arr.length;
+        const dp = Array(n + 1).fill(null).map(() => Array(target + 1).fill(false));
+
+        // If target is 0, we can always achieve it by selecting an empty subset
+        for (let i = 0; i <= n; i++) {
+            dp[i][0] = true;
+        }
+
+        // Fill the table using bottom-up approach
+        for (let i = 1; i <= n; i++) {
+            for (let j = 1; j <= target; j++) {
+                if (arr[i - 1] > j) {
+                    dp[i][j] = dp[i - 1][j]; // Exclude the current element
+                } else {
+                    dp[i][j] = dp[i - 1][j] || dp[i - 1][j - arr[i - 1]]; // Include or exclude
+                }
+            }
+        }
+
+        return dp[n][target];
+    }
+
+    // Example usage
+    const arr2 = [3, 34, 4, 12, 5, 2];
+    const target2 = 9;
+    console.log(isSubsetSumDP(arr2, target2)); // Output: true
+
+</script>
+
+</html>
