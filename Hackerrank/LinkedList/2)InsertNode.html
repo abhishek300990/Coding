@@ -1,0 +1,31 @@
+<html>
+<script>
+    class ListNode {
+        constructor(data, next = null) {
+            this.data = data;
+            this.next = next
+        }
+    }
+    function insertNode(llist, data, position) {
+        let newNode = new ListNode(data);
+        let current = llist;
+        let index = 0;
+        while (index !== position) {
+            current = current.next;
+            index++;
+        }
+        newNode.next = current.next;
+        current.next = newNode
+        return llist
+    }
+
+
+    const list1 = new ListNode(1);
+    list1.next = new ListNode(2);
+    list1.next.next = new ListNode(4);
+
+
+    console.log(insertNode(list1, 10, 1))
+</script>
+
+</html>
