@@ -1,0 +1,35 @@
+<html>
+<script>
+    class ListNode {
+        constructor(data, next = null) {
+            this.data = data;
+            this.next = next
+        }
+    }
+    function deletetNode(llist, data) {
+        let current = llist;
+        let prev=null;
+
+        while (current.data !== data) {
+            prev=current;
+            current = current.next;
+        }
+        if(current.next){
+            prev.next=current.next
+        }else{
+            prev.next=null
+        }
+        return llist
+    }
+
+
+    const list1 = new ListNode(20);
+    list1.next = new ListNode(6);
+    list1.next.next = new ListNode(2);
+    list1.next.next.next = new ListNode(19);
+    list1.next.next.next.next = new ListNode(7);
+
+    console.log(deletetNode(list1, 7))
+</script>
+
+</html>
