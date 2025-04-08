@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>3x3 Grid</title>
+    <style>
+        .game-area {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 3px;
+        }
+
+        .row {
+            background-color: #4caf50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Choose Option -->
+    <section class="option-selection-area">
+        <h1>Choose Your Option</h1>
+        <div class="field-group">
+            <input type="radio" name="player-option" value="1" checked />
+            <label for="player-option">X</label>
+        </div>
+        <div class="field-group">
+            <input type="radio" name="player-option" value="-1" />
+            <label for="player-option">O</label>
+        </div>
+    </section>
+    <section class="game-area">
+        <div class="row" data-column="0" data-row="0">
+            <div><span></span></div>
+        </div>
+        <div class="row" data-column="1" data-row="0">
+            <div><span></span></div>
+        </div>
+        <div class="row" data-column="2" data-row="0">
+            <div><span></span></div>
+        </div>
+        <div class="row" data-column="0" data-row="1">
+            <div><span></span></div>
+        </div>
+        <div class="row" data-column="1" data-row="1">
+            <div><span></span></div>
+        </div>
+        <div class="row" data-column="2" data-row="1">
+            <div><span></span></div>
+        </div>
+        <div class="row" data-column="0" data-row="2">
+            <div><span></span></div>
+        </div>
+        <div class="row" data-column="1" data-row="2">
+            <div><span></span></div>
+        </div>
+        <div class="row" data-column="2" data-row="2">
+            <div><span><span></span></div>
+        </div>
+    </section>
+    <!-- Result dashboard -->
+    <section class="result"></section>
+</body>
+<script>
+    //Array to track the board
+    const board = [
+        ["", "", ""],
+        ["", "", ""],
+        ["", "", ""],
+    ];
+
+    //Options available
+    const options = document.querySelectorAll("[name='player-option']");
+    //Board
+    const rows = document.querySelectorAll(".row");
+    //Result area
+    const result = document.querySelector(".result");
+
+    //Players option
+    let ai = "O";
+    let human = "X";
+
+    //Handle the player click on grid
+    rows.forEach((e) => {
+        //Get the grand child span
+        const span = e.children[0].children[0];
+
+        e.addEventListener("click", (f) => {
+            //Get which grid is clicked
+            const dataRow = +e.getAttribute("data-row");
+            const dataColumn = +e.getAttribute("data-column");
+
+            //If the grid is not marked
+            if (board[dataRow][dataColumn] === "") {
+                //Player move
+                span.innerHTML = human;
+                board[dataRow][dataColumn] = human;
+            }
+        });
+    });
+</script>
+
+</html>

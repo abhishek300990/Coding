@@ -1,0 +1,30 @@
+<html>
+<script>
+    function canPartition(arr) {
+        let totalSum = arr.reduce((acc, num) => {
+            return acc + num
+        }, 0)
+        // If sum is odd, we cannot partition
+        if (totalSum % 2 !== 0) return false;
+
+        let target = totalSum / 2;
+        let n = arr.length;
+
+        // DP array: dp[i] is true if sum i can be formed
+        let dp = new Array(target + 1).fill(false);
+        dp[0] = true; // Base case: sum of 0 is always possible
+        // DP array: dp[i] is true if sum i can be formed
+        for (let num of arr) {
+            for (let j = target; j >= num; j--) {
+                dp[j] = dp[j] || dp[j - num]
+            }
+        }
+
+        return dp[target]
+    }
+    // Example usage
+    console.log(canPartition([1, 5, 11, 5]));  // Output: true (Subsets: [1, 5, 5] and [11])
+    console.log(canPartition([1, 2, 3, 5]));
+</script>
+
+</html>

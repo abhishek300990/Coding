@@ -1,0 +1,24 @@
+<html>
+<script>
+    class ListNode {
+        constructor(data, next = null) {
+            this.data = data;
+            this.next = next
+        }
+    }
+    function sortedInsert(llist, data) {
+        // Write your code here
+        let current = llist;
+        let next;
+        let prev;
+        while (current.data <= data) {
+            prev = current
+            current = current.next
+            next = current
+        }
+        prev.next = data;
+        data.next = next;
+    }
+</script>
+
+</html>

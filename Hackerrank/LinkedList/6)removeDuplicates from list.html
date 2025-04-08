@@ -1,0 +1,36 @@
+<html>
+<script>
+    class ListNode {
+        constructor(data, next = null) {
+            this.data = data;
+            this.next = next
+        }
+    }
+    function removeDuplicates(llist) {
+        let current = llist;
+
+        while (current !== null && current.next !== null) {
+            if (current.data === current.next.data) {
+                // Skip the duplicate node
+                current.next = current.next.next;
+            } else {
+                // Move to the next node
+                current = current.next;
+            }
+        }
+
+        return llist;
+    }
+
+
+    const list1 = new ListNode(1);
+    list1.next = new ListNode(2);
+    list1.next.next = new ListNode(2);
+    list1.next.next.next = new ListNode(3);
+    list1.next.next.next.next = new ListNode(3);
+    list1.next.next.next.next.next = new ListNode(3);
+    list1.next.next.next.next.next.next = new ListNode(3);
+    console.log(removeDuplicates(list1))
+</script>
+
+</html>

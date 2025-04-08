@@ -1,0 +1,28 @@
+<html>
+<script>
+    function message() {
+        console.log("hello");
+    }
+
+    function sampler(fn,count){
+        let counter=0;
+        return function(...args){
+            ++counter;
+            if(counter===count){
+                counter=0;
+                fn(...args)
+            }
+        }
+    }
+    const sample = sampler(message, 4);
+    sample();
+    sample();
+    sample();
+    sample(); // this will be executed
+    sample();
+    sample();
+    sample();
+    sample(); // this will be executed
+</script>
+
+</html>

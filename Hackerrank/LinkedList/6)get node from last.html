@@ -1,0 +1,34 @@
+<html>
+<script>
+    class ListNode {
+        constructor(data, next = null) {
+            this.data = data;
+            this.next = next
+        }
+    }
+    function getNode(llist, positionFromTail) {
+        let fast = llist;
+        let slow = llist;
+        let fastCount = 0;
+        while (fastCount !== positionFromTail) {
+            fast = fast.next
+            fastCount++
+        }
+
+        while(fast!==null){
+            slow=slow.next;
+            fast=fast.next
+        }
+        return slow
+    }
+
+
+    const list1 = new ListNode(0);
+    list1.next = new ListNode(1);
+    list1.next.next = new ListNode(2);
+    list1.next.next.next = new ListNode(3);
+
+    console.log(getNode(list1,2))
+</script>
+
+</html>
